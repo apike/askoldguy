@@ -31,22 +31,22 @@ if (have_posts()) {
 		<ul>
 			<li>
 				<label for="author">Name</label>	
-				<input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" placeholder="First and Last name" autofocus />
+				<input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" placeholder="First and Last name" autofocus required />
 			</li>
 
 			<li>
 				<label for="email">Email</label>
-				<input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" placeholder="you@yourdomain.com (optional)" />
+				<input type="email" name="email" id="email" value="<?php echo $comment_author_email; ?>" placeholder="you@yourdomain.com (optional)" />
 
 			</li>
 
 			<li>
 				<label for="url">Website</label>
-				<input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" placeholder="http://yourdomain.com (optional)" />
+				<input type="url" name="url" id="url" value="<?php echo $comment_author_url; ?>" placeholder="http://yourdomain.com (optional)" />
 			</li>
 
 			<li>
-				<textarea name="comment"></textarea>
+				<textarea name="comment" required></textarea>
 			</li>
 			<li>
 				<input name="submit" type="submit" id="submit" value="Send it!" />
