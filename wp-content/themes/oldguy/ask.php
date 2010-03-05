@@ -1,6 +1,10 @@
 <?php
 /*
 Template Name: Ask
+
+Use:
+1. Add a page based on this temlpate
+2. Add a page titled "/ask/thank-you"
 */
 
 get_header(); 
@@ -47,7 +51,7 @@ if (have_posts()) {
 			<li>
 				<input name="submit" type="submit" id="submit" value="Send it!" />
 				<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
-				<input type="hidden" name="redirect_to" value="<?php echo get_option('siteurl'); ?>/contact/thanks" />
+				<input type="hidden" name="redirect_to" value="<?php echo get_option('siteurl'); ?>/ask/thank-you" />
 			</li>
 			<?php do_action('comment_form', $post->ID); ?>
 		</ul>
