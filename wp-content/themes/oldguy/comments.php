@@ -25,7 +25,7 @@
 		<div class="alignright"><?php next_comments_link() ?></div>
 	</div>
 
-	<ol class="commentlist">
+	<ol class="commentlist box">
 	<?php wp_list_comments(); ?>
 	</ol>
 
@@ -48,7 +48,7 @@
 
 <?php if ( comments_open() ) : ?>
 
-<div id="respond">
+<div id="respond" class='box'>
 
 <h3><?php comment_form_title( 'Leave a Reply', 'Leave a Reply to %s' ); ?></h3>
 
