@@ -17,6 +17,7 @@ function qa_javascript() {
  
 ?>
 <script type='text/javascript'>
+	var ok = true;
 	
 	// Update the post title field to make question answering easier
 	
@@ -31,16 +32,31 @@ function qa_javascript() {
 	
 	jQuery('#dashboard_recent_comments h3.hndle')
 		.text("Recent Comments & Questions");
-	jQuery('#dashboard_recent_comments p.textright a')
-		.text('Go and answer some questions!'); // need to use comments full page for actual text
+	jQuery('#postexcerpt h3.hndle')
+		.text('The Old Guy Question'); // need to use comments full page for actual text
+
 
 	// Add an action to each row for answering questions
-	jQuery('table .comment .row-actions')
+	jQuery('.comment .row-actions')
 		.each(function(i, d) {
+			// first try getting the CID from the hidden form field
 			var cid = jQuery(d)
 					.parent().parent()
 					.find('th.check-column input').val();
+			
+			// next, try getting the CID from the TRASH anchor
+			if (cid == undefined) {
+				var del = jQuery(d).find('a.delete').attr('href');
+				cid = del.match(/c=([^&]+)/)[1]; // parse it out of the GET params	
+			}
+
+			// if that fails, mark failure
+			if (cid == undefined) {
+				ok = false;
+				return;
+			};
 						
+			// hook the comment/question menues
 			jQuery(d) 
 				.css({ /* update the look of the action bar (so CH sees it) */ 
 					backgroundColor: '#f7f7f7',
@@ -62,16 +78,21 @@ function qa_javascript() {
 	jQuery('a.answerator').click(function() {
 		var	cid = jQuery(this).attr('href');
 
+		// post to our ajax proxy (in this plugin below)
 		jQuery.post(
 			ajaxurl, { 
 				action: 'qa_post',
 				comment: cid
 			},
 			function(d) {	
-				window.location.replace(d);
+				window.location.replace(d); // redirect after posting
 			});	
 		
 	});
+	
+	
+	if (!ok)
+		alert("JustAskOldGuy plugin failed: contact Allen or Bruce for tech support.");
 
 </script>
 <?php
