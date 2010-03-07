@@ -31,6 +31,9 @@
 <div id="header" class='box' role="banner">
 		<h1><a href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a></h1>
 		<div class="description"><?php bloginfo('description'); ?></div>
-		<p class='column_links'><a href='#' class='first'>Archives</a> <a href='#' class='second'>About</a> <a href='#' class='third'>Ask</a>
+		<p class='column_links'>
+			<a href='#' class='first'>Archives</a>
+			<a href='#' class='second'>About</a>
+			<a href='/?page_id=17' class='third'>Ask</a>
 </div>
 <hr />

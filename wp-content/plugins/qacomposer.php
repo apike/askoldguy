@@ -98,7 +98,8 @@ function qa_quick_post() {
 	$post = array(
 		'post_status' 	=> 'draft', 
 		'post_type' 	=> 'post',
-		'post_title' 	=> "$question\n\n-- $who\n\n**Asked on $when**\n\n",
+		'post_title'	=> 'Just Ask Oldguy',
+		'post_excerpt' 	=> "$question\n\n-- $who\n\n",
 		'post_content' 	=>  "" );
 	
 		
