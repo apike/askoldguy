@@ -17,7 +17,7 @@ function qa_javascript() {
  
 ?>
 <script type='text/javascript'>
-
+	
 	// Update the post title field to make question answering easier
 	
 	if (jQuery('input#title').length) {
@@ -32,7 +32,7 @@ function qa_javascript() {
 	jQuery('#dashboard_recent_comments h3.hndle')
 		.text("Recent Comments & Questions");
 	jQuery('#dashboard_recent_comments p.textright a')
-		.text('Answer some questions!'); // need to use comments full page for actual text
+		.text('Go and answer some questions!'); // need to use comments full page for actual text
 
 	// Add an action to each row for answering questions
 	jQuery('table .comment .row-actions')
@@ -58,16 +58,18 @@ function qa_javascript() {
 			);		
 	});
 	
+	// handle the ANSWER clicks
 	jQuery('a.answerator').click(function() {
-		var	cid = jQuery(this).attr('href'), 
-			comment = jQuery(this)
-				.parent().parent().parent()
-				.find('textarea').val();
-			
-		console.log('CLICKED ' + cid + ' ' + comment );
-		console.log('TODO - quick add post');
-		console.log('TODO - go to post');		
-		console.log('TODO - delete');
+		var	cid = jQuery(this).attr('href');
+
+		jQuery.post(
+			ajaxurl, { 
+				action: 'qa_post',
+				comment: cid
+			},
+			function(d) {	
+				window.location.replace(d);
+			});	
 		
 	});
 
@@ -76,5 +78,35 @@ function qa_javascript() {
 }
  
 add_action('admin_footer', 'qa_javascript');
+add_action('wp_ajax_qa_post', 'qa_quick_post');
+
+// Answer question AJAX handler
+function qa_quick_post() {
+	global $wpdb;
+	
+	/* NOTE: this should use get_comment, but it wasn't working in this context for whatever reason */
+	
+	$commend_ID = $_POST['comment'];
+	
+	$comment = $wpdb->get_row(
+		$wpdb->prepare("SELECT * FROM $wpdb->comments WHERE comment_ID = %d LIMIT 1", $commend_ID));
+
+	$question 	= $comment->comment_content;
+	$who 		= $comment->comment_author;
+	$when 		= $comment->comment_date;
+
+	$post = array(
+		'post_status' 	=> 'draft', 
+		'post_type' 	=> 'post',
+		'post_title' 	=> "$question\n\n-- $who\n\n**Asked on $when**\n\n",
+		'post_content' 	=>  "" );
+	
+		
+	$id = wp_insert_post( $post );	
+	wp_set_comment_status( $commend_ID, 'approve' );
+
+	echo "/wp-admin/post.php?action=edit&post=$id";
+	die;
+}
  
 ?>
