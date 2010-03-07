@@ -13,14 +13,15 @@ get_header(); ?>
 		<?php while (have_posts()) : the_post(); ?>
 
 			<div <?php post_class('box') ?> id="post-<?php the_ID(); ?>">
-				<h2><?php the_title(); ?></h2>
+				<h2><?php the_title(); ?>
+					<span class='asker'>- Silent Bob</style></h2>
 				<p class='date'><?php the_time('F jS, Y') ?></p>
 
 				<div class="entry">
 					<?php the_content('Read the rest of this entry &raquo;'); ?>
 				</div>
 
-				<p class="postmetadata"><?php the_tags('Tags: ', ', ', '<br />'); ?> Posted in <?php the_category(', ') ?> | <?php edit_post_link('Edit', '', ' | '); ?>  <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?> | <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">Permalink</a></p>
+				<p class="postmetadata column_links"><?php comments_popup_link('No Comments', '1 Comment', '% Comments', 'first'); ?> <a href="<?php the_permalink() ?>" rel="bookmark" class='second' title="Permanent Link to <?php the_title_attribute(); ?>">Permalink</a>  <?php edit_post_link('Edit', '', ' | '); ?></p>
 			</div>
 
 		<?php endwhile; ?>
