@@ -119,7 +119,7 @@ function qa_quick_post() {
 	$post = array(
 		'post_status' 	=> 'draft', 
 		'post_type' 	=> 'post',
-		'post_title'	=> 'Just Ask Oldguy',
+		'post_title'	=> "Just Ask Oldguy question from $who",
 		'post_excerpt' 	=> $question,
 		'post_content' 	=>  "" );
 	
