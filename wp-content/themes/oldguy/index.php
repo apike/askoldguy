@@ -14,7 +14,10 @@ get_header(); ?>
 
 			<div <?php post_class('box') ?> id="post-<?php the_ID(); ?>">
 				<h2><?php the_excerpt(); ?>
-					<span class='asker'>- Silent Bob</style></h2>
+					<?php if ($asker = get_post_meta(get_the_ID(), 'asker', true)) { ?>
+						<span class='asker'>- <?php print $asker; ?></style>
+					<?php } ?>
+					</h2>
 				<p class='date'><?php the_time('F jS, Y') ?></p>
 
 				<div class="entry">
@@ -26,10 +29,6 @@ get_header(); ?>
 
 		<?php endwhile; ?>
 
-		<div class="navigation">
-			<div class="alignleft"><?php next_posts_link('&laquo; Older Entries') ?></div>
-			<div class="alignright"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
-		</div>
 
 	<?php else : ?>
 

@@ -1,4 +1,7 @@
-/* @override http://oldguy.antipode.ca/wp-content/themes/oldguy/style.css */
+/* @override 
+	http://oldguy.antipode.ca/wp-content/themes/oldguy/style.css
+	http://oldguy.alteringtime.com/wp-content/themes/oldguy/style.css
+*/
 
 /*
 Theme Name: Oldguy Theme
@@ -146,6 +149,10 @@ body {
 	padding-bottom: 60px;
 }
 
+#footer.box {
+	padding-bottom: 60px;
+}
+
 #header .description {
 	font-size: 16px;
 }
@@ -168,12 +175,16 @@ body {
 	text-decoration: underline;
 }
 
-.column_links .second {
+.column_links :nth-child(2) {
 	left: 160px;
 }
 
-.column_links .third {
+.column_links :nth-child(3) {
 	left: 320px;
+}
+
+#credits {
+	margin-top: 2em;
 }
 
 /* Begin Images */

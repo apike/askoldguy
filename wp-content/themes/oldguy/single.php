@@ -12,8 +12,11 @@ get_header();
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 		<div <?php post_class('box') ?> id="post-<?php the_ID(); ?>">
-			<h2><?php the_excerpt(); ?>
-				<span class='asker'>- Silent Bob</style></h2>
+			<h2><?php has_excerpt() ? the_excerpt() : the_title(); ?>
+				<?php if ($asker = get_post_meta(get_the_ID(), 'asker', true)) { ?>
+					<span class='asker'>- <?php print $asker; ?></style>
+				<?php } ?>
+				</h2>
 			
 			<p class='date'><?php the_time('F jS, Y') ?></p>
 			

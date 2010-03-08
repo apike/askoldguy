@@ -9,13 +9,19 @@
 
 <div id="footer" class='box' role="contentinfo">
 
-	<p>
-		<a href="<?php bloginfo('rss2_url'); ?>">Entries RSS</a>
-		- <a href="<?php bloginfo('comments_rss2_url'); ?>">Comments RSS</a>.
-		<!-- <?php echo get_num_queries(); ?> queries. <?php timer_stop(1); ?> seconds. -->
-	</p>
+
+	<div class='column_links'>
+	<?php if (!is_single()):?>
+		<?php
+			next_posts_link('&laquo; Older Entries');
+			previous_posts_link('Newer Entries &raquo;');
+		?>
+	<?php endif; ?>
+
+		<a href="<?php bloginfo('rss2_url'); ?>">RSS Feed</a>
+	</div>
 	
-	<p>
+	<p id='credits'>
 		Design by <a href='http://www.antipode.ca/'>Allen</a>, code by <a href='http://www.napkinware.com/'>Bruce</a>, and answers by Chris.
 	</p>
 </div>

@@ -32,8 +32,7 @@
 		<h1><a href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a></h1>
 		<div class="description"><?php bloginfo('description'); ?></div>
 		<p class='column_links'>
-			<a href='#' class='first'>Archives</a>
-			<a href='#' class='second'>About</a>
-			<a href='/?page_id=17' class='third'>Ask</a>
+			<a href='/ask-oldguy/' class='first'>Ask a Question</a>
+			<a href='/about/' class='second'>About</a>
 </div>
 <hr />

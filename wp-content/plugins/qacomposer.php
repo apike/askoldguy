@@ -120,11 +120,12 @@ function qa_quick_post() {
 		'post_status' 	=> 'draft', 
 		'post_type' 	=> 'post',
 		'post_title'	=> 'Just Ask Oldguy',
-		'post_excerpt' 	=> "$question\n\n-- $who\n\n",
+		'post_excerpt' 	=> $question,
 		'post_content' 	=>  "" );
 	
 		
-	$id = wp_insert_post( $post );	
+	$id = wp_insert_post( $post );
+	add_post_meta($id, 'asker', $who);
 	wp_set_comment_status( $commend_ID, 'approve' );
 
 	echo "/wp-admin/post.php?action=edit&post=$id";
