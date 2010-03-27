@@ -10,7 +10,11 @@
 <head profile="http://gmpg.org/xfn/11">
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
-	<title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
+	<title><?php if ($page_title = wp_title('-', false, 'right')) {
+		print "$page_title - Just Ask Oldguy";
+	} else { 
+		print "Just Ask Oldguy - Questions, answers, and wise advice.";
+	} ?></title>
 
 	<style type="text/css" media="screen">
 		@import url( <?php bloginfo('stylesheet_url'); ?> );

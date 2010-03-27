@@ -7,7 +7,7 @@
 get_header();
 ?>
 
-	<div id="content" class="narrowcolumn" role="main">
+	<div id="content" class="narrowcolumn box" role="main">
 
 		<?php if (have_posts()) : ?>
 
@@ -19,9 +19,9 @@ get_header();
  	  <?php /* If this is a daily archive */ } elseif (is_day()) { ?>
 		<h2 class="pagetitle">Archive for <?php the_time('F jS, Y'); ?></h2>
  	  <?php /* If this is a monthly archive */ } elseif (is_month()) { ?>
-		<h2 class="pagetitle">Archive for <?php the_time('F, Y'); ?></h2>
+		<h2 class="pagetitle">What questions were asked in <?php the_time('F, Y'); ?>?</h2>
  	  <?php /* If this is a yearly archive */ } elseif (is_year()) { ?>
-		<h2 class="pagetitle">Archive for <?php the_time('Y'); ?></h2>
+		<h2 class="pagetitle">What questions were asked in <?php the_time('Y'); ?>?</h2>
 	  <?php /* If this is an author archive */ } elseif (is_author()) { ?>
 		<h2 class="pagetitle">Author Archive</h2>
  	  <?php /* If this is a paged archive */ } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) { ?>
@@ -29,30 +29,20 @@ get_header();
  	  <?php } ?>
 
 
-		<div class="navigation">
-			<div class="alignleft"><?php next_posts_link('&laquo; Older Entries') ?></div>
-			<div class="alignright"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
-		</div>
-
 		<?php while (have_posts()) : the_post(); ?>
 		<div <?php post_class() ?>>
 				<h3 id="post-<?php the_ID(); ?>"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 				<small><?php the_time('l, F jS, Y') ?></small>
 
-				<div class="entry">
-					<?php the_content() ?>
-				</div>
-
-				<p class="postmetadata"><?php the_tags('Tags: ', ', ', '<br />'); ?> Posted in <?php the_category(', ') ?> | <?php edit_post_link('Edit', '', ' | '); ?>  <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></p>
+				<h2><?php the_excerpt();
+					if ($asker = get_post_meta(get_the_ID(), 'asker', true)) { ?>
+						<span class='asker'>- <?php print $asker; ?></style>
+					<?php } ?>				</h2>
 
 			</div>
 
 		<?php endwhile; ?>
 
-		<div class="navigation">
-			<div class="alignleft"><?php next_posts_link('&laquo; Older Entries') ?></div>
-			<div class="alignright"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
-		</div>
 	<?php else :
 
 		if ( is_category() ) { // If this is a category archive

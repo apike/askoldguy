@@ -10,7 +10,11 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
-<title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
+<title><?php if ($page_title = wp_title('-', false, 'right')) {
+	print "$page_title Just Ask Oldguy";
+} else { 
+	print "Just Ask Oldguy - Questions, answers, and wise advice.";
+} ?></title>
 
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
@@ -32,7 +36,18 @@
 		<h1><a href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a></h1>
 		<div class="description"><?php bloginfo('description'); ?></div>
 		<p class='column_links'>
-			<a href='/ask-oldguy/' class='first'>Ask a Question</a>
-			<a href='/about/' class='second'>About</a>
+			<a href='/ask-oldguy/'>Ask a Question</a>
+			<a href='/about/'>About</a>
+			<a href='/archives/'>Archives</a>
+		</p>
+		
+		<?php if (!is_single()):?>
+			<p class='column_links'>
+			<?php
+				next_posts_link('&laquo; Older Entries');
+				previous_posts_link('Newer Entries &raquo;');
+			?>
+			</p>
+		<?php endif; ?>
 </div>
 <hr />

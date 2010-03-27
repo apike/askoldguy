@@ -12,18 +12,14 @@ Template Name: Archives
 
 <div id="content" class="widecolumn">
 
-<?php get_search_form(); ?>
+<div class='box'>
+	<h2>What questions have been asked in the past?</h2>
 
-<h2>Archives by Month:</h2>
+	<?php get_search_form(); ?>
+
 	<ul>
-		<?php wp_get_archives('type=monthly'); ?>
+		<?php wp_get_archives('type=yearly'); ?>
 	</ul>
-
-<h2>Archives by Subject:</h2>
-	<ul>
-		 <?php wp_list_categories(); ?>
-	</ul>
-
 </div>
 
 <?php get_footer(); ?>

@@ -15,14 +15,6 @@ Author URI: http://antipode.ca/
 	Grid: 8 / 72 for 9 columns, 20px rows
 */
 
-/* 
-
-	Try different textures for the question and the answer
-	Put the question left by one column, in a serif font,
-	 on bleach paper
-
-*/
-
 body {
 	background-color: #2c0700;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#811c08), to(#2c0700));
@@ -31,17 +23,15 @@ body {
 	-webkit-background-size: 9999px 800px;
 	font-size: 14px;
 	line-height: 20px;
-}
-
-h1, h2, h3 {
-
+	font-family: Georgia, Serif;
+	color: #333;
 }
 
 h1 a:link,
 h1 a:visited {
 	text-decoration: none;
 	color: #513e0a;
-	font-size: 58px;
+	font-size: 56px;
 	text-shadow: 1px 1px 1px white;
 	/* #e9e5d9 is a possible highlight*/
 }
@@ -166,11 +156,6 @@ blockquote {
 	margin-bottom: 0;
 }
 
-/* Begin Typography & Colors */
-body {
-	font-family: Georgia, Serif;
-	color: #333;
-	}
 
 .clear {
 	clear: both;
@@ -203,11 +188,11 @@ body {
 	position: relative;
 	font-family: Helvetica, Arial;
 	text-shadow: 1px 1px 1px #f2e8e8;
+    height: 1em;
 }
 
 .column_links a {
-	position: absolute;
-	left: 0;
+    /* We don't put the position:absolute here because if your browser doesn't support :nth-child, you can't navigate the site. */
 	text-decoration: none;
 }
 
@@ -215,11 +200,18 @@ body {
 	text-decoration: underline;
 }
 
+.column_links :nth-child(1) {
+	position: absolute;
+	left: 0;
+}
+
 .column_links :nth-child(2) {
+	position: absolute;
 	left: 160px;
 }
 
 .column_links :nth-child(3) {
+	position: absolute;
 	left: 320px;
 }
 
