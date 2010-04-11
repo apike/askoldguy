@@ -4,6 +4,17 @@
  * @subpackage Default_Theme
  */
 
+function shorten_question($question_text) {
+	$max_q_length = 200;
+	
+	if (strlen($question_text) > $max_q_length) {
+		$question_text = substr_replace($question_text, "...", $max_q_length);
+	}
+	
+	return $question_text;
+}
+
+
 get_header(); ?>
 
 	<div id="content" class="narrowcolumn" role="main">

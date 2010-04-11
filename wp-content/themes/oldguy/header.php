@@ -10,7 +10,17 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
-<title><?php if ($page_title = wp_title('-', false, 'right')) {
+<title><?php
+if (is_singular() && $question = get_the_excerpt()) {
+	$max_q_length = 150;
+
+	if (strlen($question) > $max_q_length) {
+		$question = substr_replace($question, "...", $max_q_length);
+	}
+
+	print $question;
+}
+else if ($page_title = wp_title('-', false, 'right')) {
 	print "$page_title Just Ask Oldguy";
 } else { 
 	print "Just Ask Oldguy - Questions, answers, and wise advice.";
@@ -18,6 +28,10 @@
 
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+
+<?php if (is_home()): ?>
+	<meta content="A Q&amp;A site featuring the advice of 'Oldguy'. Ask a question, or browse hundreds of previous answers." name="description" /> 
+<?php endif; ?>
 
 <style type="text/css" media="screen">
 
@@ -27,6 +41,7 @@
 <?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 
 <?php wp_head(); ?>
+
 </head>
 <body <?php body_class(); ?>>
 <div id="page">

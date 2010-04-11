@@ -37,11 +37,6 @@ if (have_posts()) {
 				</li>
 
 				<li>
-					<label for="url">Website</label>
-					<input type="url" name="url" id="url" value="<?php echo $comment_author_url; ?>" placeholder="http://yourdomain.com (optional)" />
-				</li>
-
-				<li>
 					<textarea name="comment" required></textarea>
 				</li>
 				<li>
