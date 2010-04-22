@@ -9,10 +9,11 @@
 
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<meta name="viewport" content="width=device-width" />
 
 <title><?php
 if (is_singular() && $question = get_the_excerpt()) {
-	$max_q_length = 150;
+	$max_q_length = 100;
 
 	if (strlen($question) > $max_q_length) {
 		$question = substr_replace($question, "...", $max_q_length);

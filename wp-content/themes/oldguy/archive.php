@@ -36,7 +36,7 @@ get_header();
 
 				<h2><?php the_excerpt();
 					if ($asker = get_post_meta(get_the_ID(), 'asker', true)) { ?>
-						<span class='asker'>- <?php print $asker; ?></style>
+						<span class='asker'>~ <?php print $asker; ?></style>
 					<?php } ?>				</h2>
 
 			</div>
